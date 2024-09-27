@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 class Header extends Component {
   render() {
-    const { location } = this.prop;
+    const { location } = this.props;
     return (
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand as={Link} to={"/"}>
