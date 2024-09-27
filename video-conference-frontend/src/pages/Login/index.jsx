@@ -1,6 +1,6 @@
 import { Component } from "react";
-import Header from "../../components/common/Header";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
+import Header from "../../Components/Common/Header";
 
 class Login extends Component {
   render() {
