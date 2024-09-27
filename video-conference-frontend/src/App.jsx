@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import AppRouter from "./routes/AppRouter";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Nav.Link href="#pricing">Kayıt Ol</Nav.Link>
         </Nav>
       </Navbar>
+      <AppRouter />
     </>
   );
 }
