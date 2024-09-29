@@ -5,9 +5,11 @@ namespace App\Http\Controllers\api\auth;
 use App\Http\Controllers\api\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\api\client\LoginRequest;
+use App\Http\Requests\api\client\RegisterRequest;
 use App\Models\ClientModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class indexController extends BaseController
 {
@@ -31,4 +33,17 @@ class indexController extends BaseController
             return parent::error("Kullanıcı bilgileri hatalı");
         }
     }
+
+    public function register(RegisterRequest $request){
+        $data=$request->except("_token","password_confirmation");
+        $data["password"]=Hash::make($data["password"]);
+        $data["conn_string"]=Str::random(10);
+        $create=ClientModel::create($data);
+        if($create){
+            return parent::success("Kullanıcı kayıt işlemi başarıyla tamamlandı",[$create],201);
+        }else{
+            return parent::error("Kullanıcı kayıt işleminde hata oluştu");
+        }
+    }
+
 }
