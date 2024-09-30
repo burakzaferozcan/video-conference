@@ -25,7 +25,7 @@ class indexController extends BaseController
                 "email"=>$client->email,
                 "conn_string"=>$client->conn_string,
                 "token_type"=>"Bearer",
-                "access_takoen"=>$token,
+                "access_token"=>$token,
             ]
         );
 
@@ -71,7 +71,7 @@ class indexController extends BaseController
                 "email"=>$client->email,
                 "conn_string"=>$client->conn_string,
                 "token_type"=>"Bearer",
-                "access_takoen"=>$token,
+                "access_token"=>$token,
                ]
             ]);
         }else{
