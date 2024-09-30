@@ -46,4 +46,12 @@ class indexController extends BaseController
         }
     }
 
+    public function profile(Request $request)
+    {
+        $client = $request->user();
+
+        return parent::success("Kullanıcı bilgileri getirildi",[
+            "user" => $client
+        ]);
+    }
 }
