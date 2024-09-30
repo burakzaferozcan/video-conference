@@ -54,4 +54,32 @@ class indexController extends BaseController
             "user" => $client
         ]);
     }
+
+    public function check(Request $request)
+    {
+        $client = $request->user();
+
+        if ($client){
+            $token = $client->createToken("webrtc")->accessToken;
+
+            return response()->json([
+               "success" => true,
+               "isLoggedIn" => true,
+               "data" => [
+                "id"=>$client->id,
+                "name"=>$client->name,
+                "email"=>$client->email,
+                "conn_string"=>$client->conn_string,
+                "token_type"=>"Bearer",
+                "access_takoen"=>$token,
+               ]
+            ]);
+        }else{
+            return response()->json([
+                "success" => false,
+                "isLoggedIn" => false
+            ]);
+        }
+    }
+
 }
