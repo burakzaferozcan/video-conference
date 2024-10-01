@@ -11,6 +11,7 @@ class AuthStore {
       appState: observable,
       saveToken: action,
       getToken: action,
+      removeToken: action,
     });
   }
 
@@ -36,6 +37,15 @@ class AuthStore {
       } else {
         this.appState = null;
       }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  removeToken = () => {
+    try {
+      localStorage.removeItem("appState");
+      this.appState = null;
     } catch (e) {
       console.log(e);
     }
