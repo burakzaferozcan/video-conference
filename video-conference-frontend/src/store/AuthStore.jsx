@@ -31,7 +31,7 @@ class AuthStore {
     try {
       const appStateData = localStorage.getItem("appState");
       if (appStateData) {
-        const bytes = cryptoJS.AES.decrypt(appStateData, "radio");
+        const bytes = cryptoJS.AES.decrypt(appStateData, "webrtc");
         const originalText = bytes.toString(cryptoJS.enc.Utf8);
         this.appState = jwtDecode(originalText);
       } else {
