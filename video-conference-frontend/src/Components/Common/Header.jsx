@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import withRouter from "../../withRouter";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { inject, observer } from "mobx-react";
 
 class Header extends Component {
   render() {
@@ -34,4 +35,4 @@ class Header extends Component {
     );
   }
 }
-export default withRouter(Header);
+export default withRouter(inject("AuthStore")(observer(Header)));

@@ -1,5 +1,7 @@
 import React from "react";
 import Header from "../../Components/Common/Header";
+import { inject, observer } from "mobx-react";
+import withRouter from "../../withRouter";
 
 function Home() {
   return (
@@ -10,4 +12,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default withRouter(inject("AuthStore")(observer(Home)));
