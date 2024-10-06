@@ -9,6 +9,7 @@ class AppUrl {
   static logout = this.apiURL + "/client/logout";
 
   static home = this.apiURL + "/home";
+  static video = this.apiURL + "/video";
 }
 
 export default AppUrl;

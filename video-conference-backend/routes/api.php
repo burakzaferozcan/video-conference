@@ -19,5 +19,5 @@ Route::group(['prefix' => 'home', 'as' => 'home.', 'middleware' => 'auth:api_cli
 });
 
 Route::group(['prefix' => 'video', 'as' => 'video.', 'middleware' => 'auth:api_client'], function () {
-    Route::get('', [\App\Http\Controllers\api\video\indexController::class, 'index'])->name('index');
+    Route::post('', [\App\Http\Controllers\api\video\indexController::class, 'index'])->name('index');
 });
