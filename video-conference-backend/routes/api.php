@@ -11,8 +11,9 @@ Route::group(["prefix"=>"client","as"=>"client"],function(){
         Route::get("/profile",[App\Http\Controllers\api\auth\indexController::class,"profile"])->name("profile");
         Route::get("/check",[App\Http\Controllers\api\auth\indexController::class,"check"])->name("check");
         Route::get("/logout",[App\Http\Controllers\api\auth\indexController::class,"logout"])->name("logout");
-
-
     });
+});
 
+Route::group(["prefix"=>"home","as"=>"home","middleware"=>"auth:api_client"],function(){
+    Route::get("/login",[App\Http\Controllers\api\home\indexController::class,"index"])->name("index");
 });
