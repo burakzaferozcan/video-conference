@@ -2,13 +2,16 @@ import React from "react";
 import Header from "../../Components/Common/Header";
 import { inject, observer } from "mobx-react";
 import withRouter from "../../withRouter";
+import AuthLayout from "../../Components/Layout/AuthLayout";
 
 function Home() {
   return (
-    <div>
-      <Header />
-      Home
-    </div>
+    <>
+      <AuthLayout>
+        <Header />
+        Home
+      </AuthLayout>
+    </>
   );
 }
 
