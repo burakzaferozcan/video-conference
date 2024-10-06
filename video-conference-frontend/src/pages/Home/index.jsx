@@ -18,9 +18,60 @@ class Home extends Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.getClientList();
+  }
 
+  getClientList = () => {
+    this.props.AuthStore.getToken();
+    const token =
+      this.props.AuthStore.appState !== null
+        ? this.props.AuthStore.appState.user.access_token
+        : null;
+
+    RestClient.getRequest(AppUrl.home, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        const result = res.data;
+        const status = res.status;
+        if (status === 200) {
+          this.setState({
+            isLoading: false,
+            clients: result.data.clients,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        Notification.error({
+          title: "Hata",
+          message: "Bir Hata Oluştu. Lütfen Daha Sonra Tekrar Deneyiniz",
+        });
+      });
+  };
+
+  clientsRender = (clients) => {
+    return clients.map((item, index) => {
+      return (
+        <ListGroup.Item key={index}>
+          <Link>{item.name}</Link>
+        </ListGroup.Item>
+      );
+    });
+  };
   render() {
+    const { isLoading, clients } = this.state;
+    console.log(clients);
+    if (isLoading) {
+      return (
+        <div className="d-flex justify-content-center align-itens-center vh-100">
+          Loading...
+        </div>
+      );
+    }
     return (
       <>
         <AuthLayout>
@@ -29,10 +80,13 @@ class Home extends Component {
             <h3 className="my-5 text-center">Kullanıcı Listesi</h3>
             <Col md={12} className="mt-5">
               <ListGroup>
-                <ListGroup.Item>bzo</ListGroup.Item>
-                <ListGroup.Item>bzo</ListGroup.Item>
-                <ListGroup.Item>bzo</ListGroup.Item>
-                <ListGroup.Item>bzo</ListGroup.Item>
+                {clients.length > 0 ? (
+                  this.clientsRender(clients)
+                ) : (
+                  <div className="alert alert-danger text-center">
+                    Herhangi bir kullanıcı bulunamadı.
+                  </div>
+                )}
               </ListGroup>
             </Col>
           </Container>

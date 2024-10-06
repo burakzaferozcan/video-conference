@@ -14,6 +14,6 @@ Route::group(["prefix"=>"client","as"=>"client"],function(){
     });
 });
 
-Route::group(["prefix"=>"home","as"=>"home","middleware"=>"auth:api_client"],function(){
-    Route::get("/login",[App\Http\Controllers\api\home\indexController::class,"index"])->name("index");
+Route::group(['prefix'=>'home','as'=>'home.','middleware'=>'auth:api_client'],function (){
+    Route::get('',[\App\Http\Controllers\api\home\indexController::class,'index'])->name('index');
 });
