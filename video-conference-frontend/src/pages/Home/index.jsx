@@ -56,8 +56,8 @@ class Home extends Component {
   clientsRender = (clients) => {
     return clients.map((item, index) => {
       return (
-        <ListGroup.Item key={index}>
-          <Link>{item.name}</Link>
+        <ListGroup.Item key={index} as={Link} to={`/video/${item.conn_string}`}>
+          {item.name}
         </ListGroup.Item>
       );
     });

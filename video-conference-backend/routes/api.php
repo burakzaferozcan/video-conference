@@ -3,17 +3,21 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::group(["prefix"=>"client","as"=>"client"],function(){
-    Route::post("/login",[App\Http\Controllers\api\auth\indexController::class,"login"])->name("login");
-    Route::post("/register",[App\Http\Controllers\api\auth\indexController::class,"register"])->name("register");
+Route::group(["prefix" => "client", "as" => "client"], function () {
+    Route::post("/login", [App\Http\Controllers\api\auth\indexController::class, "login"])->name("login");
+    Route::post("/register", [App\Http\Controllers\api\auth\indexController::class, "register"])->name("register");
 
-    Route::group(["middleware"=>"auth:api_client"],function(){
-        Route::get("/profile",[App\Http\Controllers\api\auth\indexController::class,"profile"])->name("profile");
-        Route::get("/check",[App\Http\Controllers\api\auth\indexController::class,"check"])->name("check");
-        Route::get("/logout",[App\Http\Controllers\api\auth\indexController::class,"logout"])->name("logout");
+    Route::group(["middleware" => "auth:api_client"], function () {
+        Route::get("/profile", [App\Http\Controllers\api\auth\indexController::class, "profile"])->name("profile");
+        Route::get("/check", [App\Http\Controllers\api\auth\indexController::class, "check"])->name("check");
+        Route::get("/logout", [App\Http\Controllers\api\auth\indexController::class, "logout"])->name("logout");
     });
 });
 
-Route::group(['prefix'=>'home','as'=>'home.','middleware'=>'auth:api_client'],function (){
-    Route::get('',[\App\Http\Controllers\api\home\indexController::class,'index'])->name('index');
+Route::group(['prefix' => 'home', 'as' => 'home.', 'middleware' => 'auth:api_client'], function () {
+    Route::get('', [\App\Http\Controllers\api\home\indexController::class, 'index'])->name('index');
+});
+
+Route::group(['prefix' => 'video', 'as' => 'video.', 'middleware' => 'auth:api_client'], function () {
+    Route::get('', [\App\Http\Controllers\api\video\indexController::class, 'index'])->name('index');
 });

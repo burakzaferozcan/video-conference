@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Logout from "../pages/Logout";
 import withRouter from "../withRouter";
 import { inject, observer } from "mobx-react";
+import Video from "../pages/Video";
 
 class AuthRouter extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class AuthRouter extends Component {
     return (
       <Routes>
         <Route path={"/"} element={<Home />} />
+        <Route path={"/video/:conn"} element={<Video />} />
         <Route path={"/logout"} element={<Logout />} />
       </Routes>
     );
